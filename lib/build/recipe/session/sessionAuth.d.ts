@@ -9,11 +9,7 @@ declare type PropsWithAuth = {
 export declare type SessionAuthProps = (PropsWithoutAuth | PropsWithAuth) & {
     onSessionExpired?: () => void;
 };
-declare const SessionAuthWrapper: React.FC<
-    PropsWithChildren<
-        SessionAuthProps & {
-            userContext?: any;
-        }
-    >
->;
+declare const SessionAuthWrapper: React.FC<PropsWithChildren<SessionAuthProps & {
+    userContext?: any;
+}>>;
 export default SessionAuthWrapper;

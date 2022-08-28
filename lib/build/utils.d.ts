@@ -10,10 +10,7 @@ export declare function getURLHash(): string;
 export declare function getRedirectToPathFromURL(): string | undefined;
 export declare function isTest(): boolean;
 export declare function normaliseInputAppInfoOrThrowError(appInfo: AppInfoUserInput): NormalisedAppInfo;
-export declare function validateForm(
-    inputs: APIFormField[],
-    configFormFields: NormalisedFormField[]
-): Promise<FormFieldError[]>;
+export declare function validateForm(inputs: APIFormField[], configFormFields: NormalisedFormField[]): Promise<FormFieldError[]>;
 export declare function getCurrentNormalisedUrlPath(): NormalisedURLPath;
 export declare function appendQueryParamsToURL(stringUrl: string, queryParams?: Record<string, string>): string;
 export declare function matchRecipeIdUsingQueryParams(recipeId: string): () => boolean;
@@ -28,11 +25,7 @@ export declare function mergeObjects<T>(obj1: T, obj2: T): T;
 export declare function normaliseCookieScopeOrThrowError(cookieScope: string): string;
 export declare function getDefaultCookieScope(): string | undefined;
 export declare function getCookieValue(name: string): Promise<string | null>;
-export declare function setFrontendCookie(
-    name: string,
-    value: string | undefined,
-    scope: string | undefined
-): Promise<void>;
+export declare function setFrontendCookie(name: string, value: string | undefined, scope: string | undefined): Promise<void>;
 export declare function getNormalisedUserContext(userContext?: any): any;
 /**
  * This function handles calling APIs that should only be called once during mount (mostly on mount of a route/feature component).
@@ -45,9 +38,4 @@ export declare function getNormalisedUserContext(userContext?: any): any;
  * @param handleError This is called with the error of the first (fetch) call if it rejects.
  * @param startLoading Will start the whole process if this is set to true (or omitted). Mostly used to wait for session loading.
  */
-export declare const useOnMountAPICall: <T>(
-    fetch: () => Promise<T>,
-    handleResponse: (consumeResp: T) => Promise<void>,
-    handleError?: ((err: unknown, consumeResp: T | undefined) => void) | undefined,
-    startLoading?: boolean
-) => void;
+export declare const useOnMountAPICall: <T>(fetch: () => Promise<T>, handleResponse: (consumeResp: T) => Promise<void>, handleError?: ((err: unknown, consumeResp: T | undefined) => void) | undefined, startLoading?: boolean) => void;

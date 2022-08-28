@@ -3,13 +3,9 @@ import SuperTokens from "./superTokens";
 import { TranslationStore } from "./translation/translationHelpers";
 import { SuperTokensConfig } from "./types";
 export default class SuperTokensAPIWrapper {
-    static SuperTokensWrapper: import("react").FC<
-        import("react").PropsWithChildren<
-            import("./recipe/session/sessionAuth").SessionAuthProps & {
-                userContext?: any;
-            }
-        >
-    >;
+    static SuperTokensWrapper: import("react").FC<import("react").PropsWithChildren<import("./recipe/session/sessionAuth").SessionAuthProps & {
+        userContext?: any;
+    }>>;
     static init(config: SuperTokensConfig): void;
     static canHandleRoute(): boolean;
     static getRoutingComponent(): JSX.Element | null;

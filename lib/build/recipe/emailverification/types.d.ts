@@ -20,15 +20,11 @@ export declare type UserInput = UserInputForAuthRecipeModule & {
     redirectToSignIn(history?: any): Promise<void>;
     postVerificationRedirect(history?: any): Promise<void>;
     override?: {
-        functions?: (
-            originalImplementation: RecipeInterface,
-            builder?: OverrideableBuilder<RecipeInterface>
-        ) => RecipeInterface;
+        functions?: (originalImplementation: RecipeInterface, builder?: OverrideableBuilder<RecipeInterface>) => RecipeInterface;
         components?: ComponentOverrideMap;
     };
 };
-export declare type Config = UserInput &
-    RecipeModuleConfig<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;
+export declare type Config = UserInput & RecipeModuleConfig<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;
 export declare type NormalisedConfig = {
     mode: "OFF" | "REQUIRED";
     disableDefaultUI: boolean;
@@ -38,10 +34,7 @@ export declare type NormalisedConfig = {
     redirectToSignIn(history?: any): Promise<void>;
     postVerificationRedirect(history?: any): Promise<void>;
     override: {
-        functions: (
-            originalImplementation: RecipeInterface,
-            builder?: OverrideableBuilder<RecipeInterface>
-        ) => RecipeInterface;
+        functions: (originalImplementation: RecipeInterface, builder?: OverrideableBuilder<RecipeInterface>) => RecipeInterface;
         components: ComponentOverrideMap;
     };
 } & NormalisedRecipeModuleConfig<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;

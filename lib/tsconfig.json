@@ -12,7 +12,7 @@
         "jsx": "react-jsx",
         "jsxImportSource": "@emotion/react",
         "esModuleInterop": true,
-        "sourceMap": false,
+        "sourceMap": true,
         "skipLibCheck": true,
         "strict": true,
         "noUnusedLocals": true,

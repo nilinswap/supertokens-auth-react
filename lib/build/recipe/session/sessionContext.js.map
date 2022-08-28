@@ -1,0 +1,1 @@
+{"version":3,"file":"sessionContext.js","sourceRoot":"","sources":["../../../ts/recipe/session/sessionContext.ts"],"names":[],"mappings":";;;;;;AAAA,gDAA0B;AAG1B,IAAM,cAAc,GAAG,eAAK,CAAC,aAAa,CAA8C;IACpF,OAAO,EAAE,IAAI;IACb,SAAS,EAAE,IAAI;CAClB,CAAC,CAAC;AAEH,SAAgB,gBAAgB,CAAC,cAA2D;IACxF,OAAO,cAAc,CAAC,SAAS,CAAC;AACpC,CAAC;AAFD,4CAEC;AAED,kBAAe,cAAc,CAAC"}

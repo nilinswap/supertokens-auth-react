@@ -4,9 +4,7 @@ import Recipe from "./recipe";
 declare type Props = FeatureBaseProps & {
     getRecipe: () => Recipe;
 };
-declare const EmailVerificationAuthWrapper: React.FC<
-    Props & {
-        userContext?: any;
-    }
->;
+declare const EmailVerificationAuthWrapper: React.FC<Props & {
+    userContext?: any;
+}>;
 export default EmailVerificationAuthWrapper;

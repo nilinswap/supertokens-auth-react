@@ -20,10 +20,7 @@ export declare type SuperTokensConfig = {
     };
     enableDebugLogs?: boolean;
 };
-export declare type CreateRecipeFunction<T, S, R, N extends NormalisedRecipeModuleConfig<T, S, R>> = (
-    appInfo: NormalisedAppInfo,
-    enableDebugLogs: boolean
-) => RecipeModule<T, S, R, N>;
+export declare type CreateRecipeFunction<T, S, R, N extends NormalisedRecipeModuleConfig<T, S, R>> = (appInfo: NormalisedAppInfo, enableDebugLogs: boolean) => RecipeModule<T, S, R, N>;
 export declare type AppInfoUserInput = {
     appName: string;
     apiDomain: string;
@@ -92,12 +89,6 @@ export declare type ThemeBaseProps = {
 export declare type FeatureBaseProps = PropsWithChildren<{
     history?: any;
 }>;
-export declare type Awaited<T> = T extends null | undefined
-    ? T
-    : T extends object & {
-          then(onfulfilled: infer F): any;
-      }
-    ? F extends (value: infer V, ...args: any) => any
-        ? V
-        : never
-    : T;
+export declare type Awaited<T> = T extends null | undefined ? T : T extends object & {
+    then(onfulfilled: infer F): any;
+} ? F extends (value: infer V, ...args: any) => any ? V : never : T;

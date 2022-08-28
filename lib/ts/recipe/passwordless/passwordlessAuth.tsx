@@ -47,7 +47,7 @@ function PasswordlessAuth(props: Props) {
     );
 }
 
-const PasswordlessAuthMemo = memo(PasswordlessAuth);
+const PasswordlessAuthMemo = memo(PasswordlessAuth);    
 
 export default function PasswordlessAuthWrapper({
     children,

@@ -25,31 +25,23 @@ export default class SuperTokens {
     static canHandleRoute(): boolean;
     static getRoutingComponent(): JSX.Element | null;
     static getSuperTokensRoutesForReactRouterDom(reactRouterDom: any): JSX.Element[];
-    static getReactRouterDomWithCustomHistory():
-        | {
-              router: {
-                  Route: any;
-              };
-              useHistoryCustom: () => any;
-          }
-        | undefined;
+    static getReactRouterDomWithCustomHistory(): {
+        router: {
+            Route: any;
+        };
+        useHistoryCustom: () => any;
+    } | undefined;
     canHandleRoute: () => boolean;
     getRoutingComponent: () => JSX.Element | null;
     getPathsToFeatureComponentWithRecipeIdMap: () => BaseFeatureComponentMap;
-    getMatchingComponentForRouteAndRecipeId: (
-        normalisedUrl: NormalisedURLPath
-    ) => ComponentWithRecipeAndMatchingMethod | undefined;
-    getRecipeOrThrow<T, S, R, N extends NormalisedRecipeModuleConfig<T, S, R>>(
-        recipeId: string
-    ): RecipeModule<T, S, R, N>;
-    getReactRouterDomWithCustomHistory: () =>
-        | {
-              router: {
-                  Route: any;
-              };
-              useHistoryCustom: () => any;
-          }
-        | undefined;
+    getMatchingComponentForRouteAndRecipeId: (normalisedUrl: NormalisedURLPath) => ComponentWithRecipeAndMatchingMethod | undefined;
+    getRecipeOrThrow<T, S, R, N extends NormalisedRecipeModuleConfig<T, S, R>>(recipeId: string): RecipeModule<T, S, R, N>;
+    getReactRouterDomWithCustomHistory: () => {
+        router: {
+            Route: any;
+        };
+        useHistoryCustom: () => any;
+    } | undefined;
     changeLanguage: (lang: string) => Promise<void>;
     loadTranslation(store: TranslationStore): void;
     static reset(): void;

@@ -1,37 +1,11 @@
 import { FeatureBaseConfig, NormalisedBaseConfig } from "../../types";
-import {
-    GetRedirectionURLContext as EmailPasswordGetRedirectionURLContext,
-    OnHandleEventContext as EmailPasswordOnHandleEventContext,
-    PreAPIHookContext as EmailPasswordPreAPIHookContext,
-} from "../emailpassword";
-import {
-    ResetPasswordUsingTokenUserInput,
-    SignInFormFeatureUserInput,
-    SignUpFormFeatureUserInput,
-    PreAndPostAPIHookAction as EmailPasswordPreAndPostAPIHookAction,
-    SignInAndUpState as EmailPasswordSignInAndUpState,
-    EmailPasswordSignInAndUpAction,
-    EmailPasswordSignInAndUpChildProps,
-} from "../emailpassword/types";
-import {
-    GetRedirectionURLContext as ThirdPartyGetRedirectionURLContext,
-    OnHandleEventContext as ThirdPartyOnHandleEventContext,
-    PreAPIHookContext as ThirdPartyPreAPIHookContext,
-} from "../thirdparty";
-import {
-    PreAndPostAPIHookAction as ThirdPartyPreAndPostAPIHookAction,
-    ThirdPartySignInAndUpState,
-    ThirdPartySignInUpActions,
-    ThirdPartySignInUpChildProps,
-} from "../thirdparty/types";
+import { GetRedirectionURLContext as EmailPasswordGetRedirectionURLContext, OnHandleEventContext as EmailPasswordOnHandleEventContext, PreAPIHookContext as EmailPasswordPreAPIHookContext } from "../emailpassword";
+import { ResetPasswordUsingTokenUserInput, SignInFormFeatureUserInput, SignUpFormFeatureUserInput, PreAndPostAPIHookAction as EmailPasswordPreAndPostAPIHookAction, SignInAndUpState as EmailPasswordSignInAndUpState, EmailPasswordSignInAndUpAction, EmailPasswordSignInAndUpChildProps } from "../emailpassword/types";
+import { GetRedirectionURLContext as ThirdPartyGetRedirectionURLContext, OnHandleEventContext as ThirdPartyOnHandleEventContext, PreAPIHookContext as ThirdPartyPreAPIHookContext } from "../thirdparty";
+import { PreAndPostAPIHookAction as ThirdPartyPreAndPostAPIHookAction, ThirdPartySignInAndUpState, ThirdPartySignInUpActions, ThirdPartySignInUpChildProps } from "../thirdparty/types";
 import Provider from "../thirdparty/providers";
 import { CustomProviderConfig } from "../thirdparty/providers/types";
-import {
-    Config as AuthRecipeModuleConfig,
-    NormalisedConfig as NormalisedAuthRecipeModuleConfig,
-    UserInput as AuthRecipeModuleUserInput,
-    UserInputOverride as AuthRecipeUserInputOverride,
-} from "../authRecipeWithEmailVerification/types";
+import { Config as AuthRecipeModuleConfig, NormalisedConfig as NormalisedAuthRecipeModuleConfig, UserInput as AuthRecipeModuleUserInput, UserInputOverride as AuthRecipeUserInputOverride } from "../authRecipeWithEmailVerification/types";
 import EPRecipe from "../emailpassword/recipe";
 import TPRecipe from "../thirdparty/recipe";
 import OverrideableBuilder from "supertokens-js-override";
@@ -41,35 +15,27 @@ import { ComponentOverrideMap as ThirdPartyOverrideMap } from "../thirdparty/typ
 import { Header } from "./components/themes/signInAndUp/header";
 import { Dispatch } from "react";
 import { RecipeInterface } from "supertokens-web-js/recipe/thirdpartyemailpassword";
-export declare type ComponentOverrideMap = EmailPasswordOverrideMap &
-    ThirdPartyOverrideMap & {
-        ThirdPartyEmailPasswordHeader_Override?: ComponentOverride<typeof Header>;
-    };
+export declare type ComponentOverrideMap = EmailPasswordOverrideMap & ThirdPartyOverrideMap & {
+    ThirdPartyEmailPasswordHeader_Override?: ComponentOverride<typeof Header>;
+};
 export declare type UserInput = {
     signInAndUpFeature?: SignInAndUpFeatureUserInput;
     oAuthCallbackScreen?: FeatureBaseConfig;
     resetPasswordUsingTokenFeature?: ResetPasswordUsingTokenUserInput;
     disableEmailPassword?: boolean;
     override?: {
-        functions?: (
-            originalImplementation: RecipeInterface,
-            builder?: OverrideableBuilder<RecipeInterface>
-        ) => RecipeInterface;
+        functions?: (originalImplementation: RecipeInterface, builder?: OverrideableBuilder<RecipeInterface>) => RecipeInterface;
         components?: ComponentOverrideMap;
     } & AuthRecipeUserInputOverride;
 } & AuthRecipeModuleUserInput<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;
-export declare type Config = UserInput &
-    AuthRecipeModuleConfig<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;
+export declare type Config = UserInput & AuthRecipeModuleConfig<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;
 export declare type NormalisedConfig = {
     signInAndUpFeature: NormalisedSignInAndUpFeatureConfig;
     resetPasswordUsingTokenFeature?: ResetPasswordUsingTokenUserInput;
     oAuthCallbackScreen?: FeatureBaseConfig;
     disableEmailPassword: boolean;
     override: {
-        functions: (
-            originalImplementation: RecipeInterface,
-            builder?: OverrideableBuilder<RecipeInterface>
-        ) => RecipeInterface;
+        functions: (originalImplementation: RecipeInterface, builder?: OverrideableBuilder<RecipeInterface>) => RecipeInterface;
         components: ComponentOverrideMap;
     };
 } & NormalisedAuthRecipeModuleConfig<GetRedirectionURLContext, PreAndPostAPIHookAction, OnHandleEventContext>;
@@ -87,9 +53,7 @@ export declare type NormalisedSignInAndUpFeatureConfig = NormalisedBaseConfig & 
     signInForm?: SignInFormFeatureUserInput;
     providers?: (Provider | CustomProviderConfig)[];
 };
-export declare type GetRedirectionURLContext =
-    | EmailPasswordGetRedirectionURLContext
-    | ThirdPartyGetRedirectionURLContext;
+export declare type GetRedirectionURLContext = EmailPasswordGetRedirectionURLContext | ThirdPartyGetRedirectionURLContext;
 export declare type PreAndPostAPIHookAction = EmailPasswordPreAndPostAPIHookAction | ThirdPartyPreAndPostAPIHookAction;
 export declare type PreAPIHookContext = EmailPasswordPreAPIHookContext | ThirdPartyPreAPIHookContext;
 export declare type OnHandleEventContext = ThirdPartyOnHandleEventContext | EmailPasswordOnHandleEventContext;

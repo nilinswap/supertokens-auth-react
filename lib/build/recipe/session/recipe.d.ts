@@ -16,15 +16,23 @@ export default class Session extends RecipeModule<unknown, unknown, unknown, any
     constructor(config: ConfigType);
     getFeatureComponent: (_: string) => JSX.Element;
     getFeatures: () => RecipeFeatureComponentMap;
-    getUserId: (input: { userContext: any }) => Promise<string>;
-    getAccessTokenPayloadSecurely: (input: { userContext: any }) => Promise<any>;
-    doesSessionExist: (input: { userContext: any }) => Promise<boolean>;
-    signOut: (input: { userContext: any }) => Promise<void>;
+    getUserId: (input: {
+        userContext: any;
+    }) => Promise<string>;
+    getAccessTokenPayloadSecurely: (input: {
+        userContext: any;
+    }) => Promise<any>;
+    doesSessionExist: (input: {
+        userContext: any;
+    }) => Promise<boolean>;
+    signOut: (input: {
+        userContext: any;
+    }) => Promise<void>;
     attemptRefreshingSession: () => Promise<boolean>;
     /**
      * @returns Function to remove event listener
      */
-    addEventListener: (listener: (ctx: RecipeEventWithSessionContext) => void) => () => void;
+    addEventListener: (listener: (ctx: RecipeEventWithSessionContext) => void) => (() => void);
     private notifyListeners;
     private getSessionContext;
     static addAxiosInterceptors(axiosInstance: any, userContext: any): void;

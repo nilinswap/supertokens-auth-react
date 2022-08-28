@@ -6,7 +6,7 @@ export declare enum SignInUpScreens {
     EmailForm = 2,
     PhoneForm = 3,
     EmailOrPhoneForm = 4,
-    UserInputCodeForm = 5,
+    UserInputCodeForm = 5
 }
 declare function SignInUpThemeWrapper(props: SignInUpProps): JSX.Element;
 export default SignInUpThemeWrapper;

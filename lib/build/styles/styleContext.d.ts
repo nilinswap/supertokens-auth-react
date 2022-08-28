@@ -6,13 +6,11 @@ declare type NormalisedStyle = {
     [x: string]: CSSObject;
 };
 declare const StyleContext: React.Context<NormalisedStyle>;
-export declare const StyleProvider: React.FC<
-    PropsWithChildren<{
-        styleFromInit?: Styles;
-        rootStyleFromInit: Styles;
-        getDefaultStyles: (palette: NormalisedPalette) => NormalisedDefaultStyles;
-        defaultPalette: NormalisedPalette;
-        rawPalette: Record<string, string>;
-    }>
->;
+export declare const StyleProvider: React.FC<PropsWithChildren<{
+    styleFromInit?: Styles;
+    rootStyleFromInit: Styles;
+    getDefaultStyles: (palette: NormalisedPalette) => NormalisedDefaultStyles;
+    defaultPalette: NormalisedPalette;
+    rawPalette: Record<string, string>;
+}>>;
 export default StyleContext;

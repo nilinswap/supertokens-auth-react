@@ -10,12 +10,5 @@ declare type Props<T, S, R, N extends NormalisedConfig<T | GetRedirectionURLCont
  * AuthWidgetWrapper shows the children component only if no session exists,
  * else it calls onSessionAlreadyExists
  */
-declare const AuthWidgetWrapper: <
-    T,
-    Action,
-    R,
-    N extends NormalisedConfig<GetRedirectionURLContext | T, Action, OnHandleEventContext | R>
->(
-    props: React.PropsWithChildren<Props<T, Action, R, N>>
-) => React.ReactElement | null;
+declare const AuthWidgetWrapper: <T, Action, R, N extends NormalisedConfig<GetRedirectionURLContext | T, Action, OnHandleEventContext | R>>(props: React.PropsWithChildren<Props<T, Action, R, N>>) => React.ReactElement | null;
 export default AuthWidgetWrapper;
