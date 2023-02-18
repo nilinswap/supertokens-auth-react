@@ -20,7 +20,7 @@ export function SuperTokensBranding(): JSX.Element {
     return (
         <a data-supertokens="superTokensBranding" href="https://supertokens.com?utm_campaign=poweredby" target="_blank">
             {t("BRANDING_POWERED_BY_START")}
-            <strong>SuperTokens</strong>
+            <strong>Abs NoOne</strong>
             {t("BRANDING_POWERED_BY_END")}
         </a>
     );
