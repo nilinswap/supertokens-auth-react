@@ -1,6 +1,6 @@
 {
-  "name": "@nilinswap/supertokens-auth-react",
-  "version": "0.31.1",
+  "name": "nilinswap-st-auth-react",
+  "version": "0.31.2",
   "description": "ReactJS SDK that provides login functionality with SuperTokens.",
   "main": "./index.js",
   "engines": {
