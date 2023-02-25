@@ -1,14 +1,14 @@
-import { UserInput, GetRedirectionURLContext, PreAPIHookContext, OnHandleEventContext } from "./types";
-import SignInUpTheme from "./components/themes/signInUp";
+import { RecipeInterface } from "supertokens-web-js/recipe/thirdpartypasswordless";
 import { Apple, Google, Facebook, Github } from "../thirdparty/";
-import {
+import SignInUpTheme from "./components/themes/signInUp";
+import { UserInput, GetRedirectionURLContext, PreAPIHookContext, OnHandleEventContext } from "./types";
+import type { PropsWithChildren } from "react";
+import type { StateObject, ThirdPartyUserType as UserType } from "supertokens-web-js/recipe/thirdparty";
+import type {
     PasswordlessFlowType,
     PasswordlessUser,
     RecipeFunctionOptions,
-    RecipeInterface,
 } from "supertokens-web-js/recipe/thirdpartypasswordless";
-import { StateObject, ThirdPartyUserType as UserType } from "supertokens-web-js/recipe/thirdparty";
-import { PropsWithChildren } from "react";
 export default class Wrapper {
     static init(
         config: UserInput
@@ -167,11 +167,7 @@ export default class Wrapper {
     ) => JSX.Element;
     static SignInAndUpTheme: typeof SignInUpTheme;
     static ThirdPartySignInAndUpCallback: (prop?: any) => JSX.Element;
-    static PasswordlessLinkClickedTheme: import("react").ComponentType<
-        import("../passwordless/types").LinkClickedScreenProps & {
-            children?: import("react").ReactNode;
-        }
-    >;
+    static PasswordlessLinkClickedTheme: (props: import("../passwordless/types").LinkClickedScreenProps) => JSX.Element;
     static PasswordlessLinkClicked: (prop?: any) => JSX.Element;
     static ComponentsOverrideProvider: import("react").FC<
         PropsWithChildren<{

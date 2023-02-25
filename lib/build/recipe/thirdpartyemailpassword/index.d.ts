@@ -1,16 +1,16 @@
-import ResetPasswordUsingTokenTheme from "../emailpassword/components/themes/resetPasswordUsingToken";
-import { UserInput, GetRedirectionURLContext, PreAPIHookContext, OnHandleEventContext } from "./types";
-import SignInAndUpTheme from "./components/themes/signInAndUp";
-import { Apple, Google, Facebook, Github } from "../thirdparty/";
 import {
     RecipeInterface,
     EmailPasswordUserType as UserType,
     ThirdPartyUserType,
-    RecipeFunctionOptions,
 } from "supertokens-web-js/recipe/thirdpartyemailpassword";
+import ResetPasswordUsingTokenTheme from "../emailpassword/components/themes/resetPasswordUsingToken";
+import { Apple, Google, Facebook, Github } from "../thirdparty/";
 import { SignInAndUpCallbackTheme as ThirdPartySignInAndUpCallbackTheme } from "../thirdparty/components/themes/signInAndUpCallback";
-import { StateObject } from "supertokens-web-js/recipe/thirdparty";
-import { PropsWithChildren } from "react";
+import SignInAndUpTheme from "./components/themes/signInAndUp";
+import { UserInput, GetRedirectionURLContext, PreAPIHookContext, OnHandleEventContext } from "./types";
+import type { PropsWithChildren } from "react";
+import type { StateObject } from "supertokens-web-js/recipe/thirdparty";
+import type { RecipeFunctionOptions } from "supertokens-web-js/recipe/thirdpartyemailpassword";
 export default class Wrapper {
     static init(
         config: UserInput
@@ -178,7 +178,9 @@ export default class Wrapper {
     static ThirdPartySignInAndUpCallback: (prop?: any) => JSX.Element;
     static ResetPasswordUsingToken: (prop?: any) => JSX.Element;
     static ResetPasswordUsingTokenTheme: typeof ResetPasswordUsingTokenTheme;
-    static ThirdPartySignInAndUpCallbackTheme: import("react").ComponentType<{}>;
+    static ThirdPartySignInAndUpCallbackTheme: (props: {
+        config: import("../thirdparty/types").NormalisedConfig;
+    }) => JSX.Element;
     static ComponentsOverrideProvider: import("react").FC<
         PropsWithChildren<{
             components: import("./types").ComponentOverrideMap;

@@ -15,15 +15,14 @@
 /*
  * Imports.
  */
-import React, { useContext } from "react";
+import React from "react";
+
 import { SuperTokensBranding } from "../../../../../components/SuperTokensBranding";
-import StyleContext, { StyleProvider } from "../../../../../styles/styleContext";
-import { defaultPalette, hasFontDefined } from "../../../../../styles/styles";
+import { hasFontDefined } from "../../../../../styles/styles";
 import UserContextWrapper from "../../../../../usercontext/userContextWrapper";
 import GeneralError from "../../../../emailpassword/components/library/generalError";
-import { SignInUpProps } from "../../../types";
-import { getStyles } from "../styles";
 import { ThemeBase } from "../themeBase";
+
 import { CloseTabScreen } from "./closeTabScreen";
 import { EmailForm } from "./emailForm";
 import { EmailOrPhoneForm } from "./emailOrPhoneForm";
@@ -32,6 +31,8 @@ import { PhoneForm } from "./phoneForm";
 import { SignInUpHeader } from "./signInUpHeader";
 import { UserInputCodeForm } from "./userInputCodeForm";
 import { UserInputCodeFormHeader } from "./userInputCodeFormHeader";
+
+import type { SignInUpProps } from "../../../types";
 
 export enum SignInUpScreens {
     CloseTab,
@@ -50,8 +51,6 @@ const SignInUpTheme: React.FC<SignInUpProps & { activeScreen: SignInUpScreens }>
     featureState,
     ...props
 }) => {
-    const styles = useContext(StyleContext);
-
     const commonProps = {
         recipeImplementation: props.recipeImplementation,
         config: props.config,
@@ -65,8 +64,8 @@ const SignInUpTheme: React.FC<SignInUpProps & { activeScreen: SignInUpScreens }>
     ) : activeScreen === SignInUpScreens.LinkSent ? (
         <LinkSent {...commonProps} loginAttemptInfo={featureState.loginAttemptInfo!} />
     ) : (
-        <div data-supertokens="container" css={styles.container}>
-            <div data-supertokens="row" css={styles.row}>
+        <div data-supertokens="container">
+            <div data-supertokens="row">
                 {featureState.loaded && (
                     <React.Fragment>
                         {activeScreen === SignInUpScreens.UserInputCodeForm ? (
@@ -121,15 +120,8 @@ function SignInUpThemeWrapper(props: SignInUpProps): JSX.Element {
 
     return (
         <UserContextWrapper userContext={props.userContext}>
-            <ThemeBase loadDefaultFont={!hasFont}>
-                <StyleProvider
-                    rawPalette={props.config.palette}
-                    defaultPalette={defaultPalette}
-                    styleFromInit={activeStyle}
-                    rootStyleFromInit={props.config.rootStyle}
-                    getDefaultStyles={getStyles}>
-                    <SignInUpTheme {...props} activeScreen={activeScreen!} />
-                </StyleProvider>
+            <ThemeBase loadDefaultFont={!hasFont} userStyles={[props.config.rootStyle, activeStyle]}>
+                <SignInUpTheme {...props} activeScreen={activeScreen!} />
             </ThemeBase>
         </UserContextWrapper>
     );

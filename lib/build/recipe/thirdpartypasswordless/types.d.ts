@@ -1,10 +1,20 @@
-import { FeatureBaseConfig, Styles } from "../../types";
-import {
+import type { Header } from "./components/themes/signInUp/header";
+import type { ComponentOverride } from "../../components/componentOverride/componentOverride";
+import type { FeatureBaseConfig } from "../../types";
+import type {
+    Config as AuthRecipeModuleConfig,
+    NormalisedConfig as NormalisedAuthRecipeModuleConfig,
+    UserInput as AuthRecipeModuleUserInput,
+} from "../authRecipe/types";
+import type {
     GetRedirectionURLContext as PasswordlessGetRedirectionURLContext,
     OnHandleEventContext as PasswordlessOnHandleEventContext,
     PreAPIHookContext as PasswordlessPreAPIHookContext,
 } from "../passwordless";
-import {
+import type { SignInUpScreens } from "../passwordless/components/themes/signInUp";
+import type PWlessRecipe from "../passwordless/recipe";
+import type { ComponentOverrideMap as PasswordlessOverrideMap } from "../passwordless/types";
+import type {
     UserInput as PwlessUserInput,
     PasswordlessFeatureBaseConfig,
     PasswordlessSignInUpAction,
@@ -13,36 +23,25 @@ import {
     SignInUpState as PWlessSignInUpState,
     PreAndPostAPIHookAction as PasswordlessPreAndPostAPIHookAction,
 } from "../passwordless/types";
-import {
+import type {
     GetRedirectionURLContext as ThirdPartyGetRedirectionURLContext,
     OnHandleEventContext as ThirdPartyOnHandleEventContext,
     PreAPIHookContext as ThirdPartyPreAPIHookContext,
 } from "../thirdparty";
-import {
+import type Provider from "../thirdparty/providers";
+import type { CustomProviderConfig } from "../thirdparty/providers/types";
+import type TPRecipe from "../thirdparty/recipe";
+import type {
     ThirdPartySignInAndUpState,
     ThirdPartySignInUpActions,
     ThirdPartySignInUpChildProps,
     UserInput as TPUserInput,
     PreAndPostAPIHookAction as ThirdPartyPreAndPostAPIHookAction,
 } from "../thirdparty/types";
-import Provider from "../thirdparty/providers";
-import { CustomProviderConfig } from "../thirdparty/providers/types";
-import {
-    Config as AuthRecipeModuleConfig,
-    NormalisedConfig as NormalisedAuthRecipeModuleConfig,
-    UserInput as AuthRecipeModuleUserInput,
-} from "../authRecipe/types";
-import PWlessRecipe from "../passwordless/recipe";
-import TPRecipe from "../thirdparty/recipe";
-import OverrideableBuilder from "supertokens-js-override";
-import { ComponentOverride } from "../../components/componentOverride/componentOverride";
-import { ComponentOverrideMap as PasswordlessOverrideMap } from "../passwordless/types";
-import { ComponentOverrideMap as ThirdPartyOverrideMap } from "../thirdparty/types";
-import { Header } from "./components/themes/signInUp/header";
-import { CountryCode } from "libphonenumber-js";
-import { Dispatch } from "react";
-import { SignInUpScreens } from "../passwordless/components/themes/signInUp";
-import { RecipeInterface } from "supertokens-web-js/recipe/thirdpartypasswordless";
+import type { ComponentOverrideMap as ThirdPartyOverrideMap } from "../thirdparty/types";
+import type { Dispatch } from "react";
+import type { OverrideableBuilder } from "supertokens-js-override";
+import type { RecipeInterface } from "supertokens-web-js/recipe/thirdpartypasswordless";
 declare type WithRenamedOptionalProp<T, K extends keyof T, L extends string> = Omit<T, K> & {
     [P in L]?: T[K];
 };
@@ -67,7 +66,7 @@ export declare type UserInput = (
           contactMethod: "PHONE";
           validatePhoneNumber?: (phoneNumber: string) => Promise<string | undefined> | string | undefined;
           signInUpFeature?: SignInUpFeatureConfigInput & {
-              defaultCountry?: CountryCode;
+              defaultCountry?: string;
           };
       }
     | {
@@ -75,10 +74,10 @@ export declare type UserInput = (
           validateEmailAddress?: (email: string) => Promise<string | undefined> | string | undefined;
           validatePhoneNumber?: (phoneNumber: string) => Promise<string | undefined> | string | undefined;
           signInUpFeature?: SignInUpFeatureConfigInput & {
-              defaultCountry?: CountryCode;
+              defaultCountry?: string;
               guessInternationPhoneNumberFromInputPhoneNumber?: (
                   inputPhoneNumber: string,
-                  defaultCountryFromConfig?: CountryCode
+                  defaultCountryFromConfig?: string
               ) => Promise<string | undefined> | string | undefined;
           };
       }
@@ -98,7 +97,7 @@ export declare type Config = UserInput &
 export declare type NormalisedConfig = {
     passwordlessUserInput: PwlessUserInput | undefined;
     thirdpartyUserInput: TPUserInput | undefined;
-    thirdPartyProviderAndEmailOrPhoneFormStyle: Styles | undefined;
+    thirdPartyProviderAndEmailOrPhoneFormStyle: string | undefined;
     override: {
         functions: (
             originalImplementation: RecipeInterface,

@@ -1,26 +1,25 @@
-import { Dispatch } from "react";
-import { FeatureBaseConfig, NormalisedBaseConfig, Styles } from "../../types";
-import {
+import type { LinkClickedScreen } from "./components/themes/linkClickedScreen";
+import type { CloseTabScreen } from "./components/themes/signInUp/closeTabScreen";
+import type { EmailForm } from "./components/themes/signInUp/emailForm";
+import type { EmailOrPhoneForm } from "./components/themes/signInUp/emailOrPhoneForm";
+import type { LinkSent } from "./components/themes/signInUp/linkSent";
+import type { PhoneForm } from "./components/themes/signInUp/phoneForm";
+import type { SignInUpFooter } from "./components/themes/signInUp/signInUpFooter";
+import type { SignInUpHeader } from "./components/themes/signInUp/signInUpHeader";
+import type { UserInputCodeForm } from "./components/themes/signInUp/userInputCodeForm";
+import type { UserInputCodeFormFooter } from "./components/themes/signInUp/userInputCodeFormFooter";
+import type { UserInputCodeFormHeader } from "./components/themes/signInUp/userInputCodeFormHeader";
+import type { ComponentOverride } from "../../components/componentOverride/componentOverride";
+import type { FeatureBaseConfig, NormalisedBaseConfig } from "../../types";
+import type {
     GetRedirectionURLContext as AuthRecipeModuleGetRedirectionURLContext,
     OnHandleEventContext as AuthRecipeModuleOnHandleEventContext,
     Config as AuthRecipeModuleConfig,
     NormalisedConfig as NormalisedAuthRecipeModuleConfig,
     UserInput as AuthRecipeModuleUserInput,
 } from "../authRecipe/types";
-import { ComponentOverride } from "../../components/componentOverride/componentOverride";
-import type { CountryCode } from "libphonenumber-js";
-import { SignInUpHeader } from "./components/themes/signInUp/signInUpHeader";
-import { SignInUpFooter } from "./components/themes/signInUp/signInUpFooter";
-import { EmailForm } from "./components/themes/signInUp/emailForm";
-import { PhoneForm } from "./components/themes/signInUp/phoneForm";
-import { UserInputCodeForm } from "./components/themes/signInUp/userInputCodeForm";
-import { LinkClickedScreen } from "./components/themes/linkClickedScreen";
-import { UserInputCodeFormHeader } from "./components/themes/signInUp/userInputCodeFormHeader";
-import { UserInputCodeFormFooter } from "./components/themes/signInUp/userInputCodeFormFooter";
-import { LinkSent } from "./components/themes/signInUp/linkSent";
-import { CloseTabScreen } from "./components/themes/signInUp/closeTabScreen";
-import { EmailOrPhoneForm } from "./components/themes/signInUp/emailOrPhoneForm";
-import { RecipeInterface, PasswordlessUser } from "supertokens-web-js/recipe/passwordless";
+import type { Dispatch } from "react";
+import type { RecipeInterface, PasswordlessUser } from "supertokens-web-js/recipe/passwordless";
 export declare type PreAndPostAPIHookAction =
     | "PASSWORDLESS_CREATE_CODE"
     | "PASSWORDLESS_CONSUME_CODE"
@@ -55,17 +54,17 @@ export declare type NormalisedConfig = {
     validatePhoneNumber: (phoneNumber: string) => Promise<string | undefined> | string | undefined;
     signInUpFeature: {
         resendEmailOrSMSGapInSeconds: number;
-        defaultCountry?: CountryCode;
+        defaultCountry?: string;
         guessInternationPhoneNumberFromInputPhoneNumber: (
             inputPhoneNumber: string,
-            defaultCountryFromConfig?: CountryCode
+            defaultCountryFromConfig?: string
         ) => Promise<string | undefined> | string | undefined;
         privacyPolicyLink?: string;
         termsOfServiceLink?: string;
-        emailOrPhoneFormStyle: Styles;
-        userInputCodeFormStyle: Styles;
-        linkSentScreenStyle: Styles;
-        closeTabScreenStyle: Styles;
+        emailOrPhoneFormStyle: string;
+        userInputCodeFormStyle: string;
+        linkSentScreenStyle: string;
+        closeTabScreenStyle: string;
         disableDefaultUI?: boolean;
     };
     linkClickedScreenFeature: PasswordlessNormalisedBaseConfig;
@@ -84,10 +83,10 @@ export declare type SignInUpFeatureConfigInput = {
     resendEmailOrSMSGapInSeconds?: number;
     privacyPolicyLink?: string;
     termsOfServiceLink?: string;
-    emailOrPhoneFormStyle?: Styles;
-    userInputCodeFormStyle?: Styles;
-    linkSentScreenStyle?: Styles;
-    closeTabScreenStyle?: Styles;
+    emailOrPhoneFormStyle?: string;
+    userInputCodeFormStyle?: string;
+    linkSentScreenStyle?: string;
+    closeTabScreenStyle?: string;
 };
 export declare type UserInput = (
     | {
@@ -99,7 +98,7 @@ export declare type UserInput = (
           contactMethod: "PHONE";
           validatePhoneNumber?: (phoneNumber: string) => Promise<string | undefined> | string | undefined;
           signInUpFeature?: SignInUpFeatureConfigInput & {
-              defaultCountry?: CountryCode;
+              defaultCountry?: string;
           };
       }
     | {
@@ -107,10 +106,10 @@ export declare type UserInput = (
           validateEmailAddress?: (email: string) => Promise<string | undefined> | string | undefined;
           validatePhoneNumber?: (phoneNumber: string) => Promise<string | undefined> | string | undefined;
           signInUpFeature?: SignInUpFeatureConfigInput & {
-              defaultCountry?: CountryCode;
+              defaultCountry?: string;
               guessInternationPhoneNumberFromInputPhoneNumber?: (
                   inputPhoneNumber: string,
-                  defaultCountryFromConfig?: CountryCode
+                  defaultCountryFromConfig?: string
               ) => Promise<string | undefined> | string | undefined;
           };
       }

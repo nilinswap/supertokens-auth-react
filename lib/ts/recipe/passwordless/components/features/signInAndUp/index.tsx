@@ -17,24 +17,26 @@
  */
 import * as React from "react";
 import { Fragment } from "react";
-import SignInUpThemeWrapper from "../../themes/signInUp";
-import FeatureWrapper from "../../../../../components/featureWrapper";
-import { clearErrorQueryParam, getQueryParams, getRedirectToPathFromURL } from "../../../../../utils";
-import Recipe from "../../../recipe";
-import { PasswordlessSignInUpAction, SignInUpState, SignInUpChildProps } from "../../../types";
-import { ComponentOverrideContext } from "../../../../../components/componentOverride/componentOverrideContext";
-import { formatPhoneNumberIntl } from "react-phone-number-input/min";
-import Session from "../../../../session";
-import SessionRecipe from "../../../../session/recipe";
-import { defaultTranslationsPasswordless } from "../../themes/translations";
 import { useMemo } from "react";
 import { useRef } from "react";
 import { useEffect } from "react";
-import { FeatureBaseProps } from "../../../../../types";
-import { RecipeInterface, PasswordlessUser } from "supertokens-web-js/recipe/passwordless";
+
+import { ComponentOverrideContext } from "../../../../../components/componentOverride/componentOverrideContext";
+import FeatureWrapper from "../../../../../components/featureWrapper";
 import { useUserContext } from "../../../../../usercontext";
+import { clearErrorQueryParam, getQueryParams, getRedirectToPathFromURL } from "../../../../../utils";
+import Session from "../../../../session";
+import SessionRecipe from "../../../../session/recipe";
+import { getPhoneNumberUtils } from "../../../phoneNumberUtils";
 import { getLoginAttemptInfo, setLoginAttemptInfo } from "../../../utils";
-import { useRecipeComponentOverrideContext } from "../../../componentOverrideContext";
+import SignInUpThemeWrapper from "../../themes/signInUp";
+import { defaultTranslationsPasswordless } from "../../themes/translations";
+
+import type { FeatureBaseProps } from "../../../../../types";
+import type Recipe from "../../../recipe";
+import type { ComponentOverrideMap } from "../../../types";
+import type { PasswordlessSignInUpAction, SignInUpState, SignInUpChildProps, NormalisedConfig } from "../../../types";
+import type { RecipeInterface, PasswordlessUser } from "supertokens-web-js/recipe/passwordless";
 
 export const useSuccessInAnotherTabChecker = (
     state: SignInUpState,
@@ -203,7 +205,9 @@ export function useChildProps(
     history: any
 ): SignInUpChildProps | undefined {
     const recipeImplementation = React.useMemo(
-        () => recipe && getModifiedRecipeImplementation(recipe.recipeImpl, dispatch, callingConsumeCodeRef),
+        () =>
+            recipe &&
+            getModifiedRecipeImplementation(recipe.recipeImpl, recipe.config, dispatch, callingConsumeCodeRef),
         [recipe]
     );
 
@@ -235,9 +239,10 @@ export function useChildProps(
 export const SignInUpFeature: React.FC<
     FeatureBaseProps & {
         recipe: Recipe;
+        useComponentOverrides: () => ComponentOverrideMap;
     }
 > = (props) => {
-    const recipeComponentOverrides = useRecipeComponentOverrideContext();
+    const recipeComponentOverrides = props.useComponentOverrides();
     const userContext = useUserContext();
     const [state, dispatch] = useFeatureReducer(props.recipe.recipeImpl, userContext);
     const callingConsumeCodeRef = useSuccessInAnotherTabChecker(state, dispatch, userContext);
@@ -276,6 +281,7 @@ export default SignInUpFeature;
 
 function getModifiedRecipeImplementation(
     originalImpl: RecipeInterface,
+    config: NormalisedConfig,
     dispatch: React.Dispatch<PasswordlessSignInUpAction>,
     callingConsumeCodeRef: React.MutableRefObject<boolean>
 ): RecipeInterface {
@@ -283,10 +289,15 @@ function getModifiedRecipeImplementation(
         ...originalImpl,
         createCode: async (input) => {
             let contactInfo;
+            const phoneNumberUtils = await getPhoneNumberUtils();
             if ("email" in input) {
                 contactInfo = input.email;
             } else {
-                contactInfo = formatPhoneNumberIntl(input.phoneNumber);
+                contactInfo = phoneNumberUtils.formatNumber(
+                    input.phoneNumber,
+                    config.signInUpFeature.defaultCountry || "",
+                    phoneNumberUtils.numberFormat.E164
+                );
             }
 
             const res = await originalImpl.createCode(input);
